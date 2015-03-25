@@ -11,6 +11,8 @@
 <script src="assets/js/Stats.js"></script>
 <script src="assets/js/OrbitControls.js"></script>
 <script>
+var rpy_roll = 0, rpy_pitch = 0, rpy_yaw = 0;
+var ws = null;
 var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
 var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 1000;
 var RENDER_WIDTH = window.innerWidth * 0.8, RENDER_HEIGHT = window.innerHeight * 0.8;
@@ -47,17 +49,40 @@ scene.add(axes);
 camera.position.set(6,6,6);
 camera.lookAt(scene.position);	
 
-function render(){
-    requestAnimationFrame(render);
-    cube.rotation.x +=0.1;
-    //cube.rotation.y +=0.1;
+function render(roll, pitch, yaw){
+    //requestAnimationFrame(render);
+    cube.rotation.x = roll;
+    cube.rotation.y = pitch;
+    cube.rotation.z = yaw;
     renderer.render(scene, camera);
 
     controls.update();
     stats.update();
 }
-render();
 
+</script>
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        if (!window.WebSocket) {
+            if (window.MozWebSocket) {
+                window.WebSocket = window.MozWebSocket;
+            } else {
+                alert("Your browser doesn't support WebSockets.");
+            }
+        }
+        ws = new WebSocket('ws://192.168.11.25:8888/websocket');
+        ws.onopen = function(evt) {
+        }
+        ws.onmessage = function(evt) {
+            var rpy = JSON.parse(evt.data);
+            render(rpy.roll, rpy.pitch, rpy.yaw);
+        }
+        ws.onclose = function(evt) {
+            //$('#messages').append('<li>WebSocket connection closed.</li>');
+            ;
+        }
+    });
 </script>
 </body>
 </html>
