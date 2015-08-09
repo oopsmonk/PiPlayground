@@ -1,6 +1,9 @@
 #[ESL Podcast 1127 - Paying for College](https://www.eslpod.com/website/show_podcast.php?issue_id=17102162)    
   
-<audio src="http://libsyn.com/media/eslpod/ESLPod1127.mp3" controls preload></audio>    
+<audio src="http://libsyn.com/media/eslpod/ESLPod1127.mp3" controls preload>
+<a href="http://libsyn.com/media/eslpod/ESLPod1127.mp3" target="_blank">Click</a>
+</audio>    
+
   
 Chris: Which colleges are you applying to?    
   
