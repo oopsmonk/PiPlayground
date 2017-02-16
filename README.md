@@ -1,2 +1,2 @@
 # PiPlayground
-some test code 
+Small projects and test code. 
