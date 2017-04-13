@@ -41,7 +41,7 @@ For help:  `img2ascii.py -h`
 ########################################
 ```
 
-### Change character of block color  
+### Change the character of black color  
 
 ```
 ./img2ascii.py -b 8 -s 40 ./raspberry-pi-logo2.png  
